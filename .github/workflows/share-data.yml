@@ -1,6 +1,6 @@
 name: Share data 1
 
-on: [workflow_dispatch]
+on: [workflow_dispatch, push]
 
 jobs:
     upload-job:
