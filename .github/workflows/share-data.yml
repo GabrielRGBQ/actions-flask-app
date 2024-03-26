@@ -1,0 +1,31 @@
+name: Share data 1
+
+on: [workflow_dispatch]
+
+jobs:
+    upload-job:
+      name: Save output
+      runs-on: ubuntu-latest
+      steps:
+        - shell: bash
+          run: |
+            expr 1 + 1 > output.log
+        - name: Upload output file
+          uses: actions/upload-artifact@v4
+          with:
+            name: output-log-file
+            path: output.log
+
+    download-job:
+        name: Download output
+        needs: upload-job
+        runs-on: ubuntu-latest
+        steps:
+        - name: Download a single artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: output-log-file
+        - name: Print current dir
+          run: pwd
+        - name: List elements in current dir
+          run: ls
