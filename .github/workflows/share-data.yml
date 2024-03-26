@@ -29,3 +29,5 @@ jobs:
           run: pwd
         - name: List elements in current dir
           run: ls
+        - name: Print file contents
+          run: cat output.log
